@@ -1,0 +1,7 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: chat-with-ws-server
+    ports:
+      - "5331:5331"  # Expose port 5331 in the container to port 5331 on the host
