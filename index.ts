@@ -1,4 +1,4 @@
-import http from "http";
+import http from "node:http";
 
 type Chat = {
 	type: "chat";
@@ -17,6 +17,7 @@ type Join = {
 const server = http.createServer((req, res) => {});
 
 import { Server } from "socket.io";
+
 const io = new Server(server, {
 	cors: {
 		methods: ["GET", "POST"],
@@ -44,6 +45,10 @@ io.on("connection", (socket) => {
 	});
 });
 
-server.listen(5331, () => {
-	console.log("WebSocket server listening on port 5331");
-});
+try {
+	server.listen(5331, () => {
+		console.log("WebSocket server listening on port 5331");
+	});
+} catch (error) {
+	console.log(`Error: ${error}`);
+}
